@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ShowProductInfo from "../components/ShowProductInfo";
 
 function ProductDetails() {
+  const navigate = useNavigate();
   const params = useParams();
   const [productDetails, setProductDetails] = useState({});
 
@@ -11,9 +12,13 @@ function ProductDetails() {
     // if (check) {
     //   setProductDetails(JSON.parse(check));
     // } else {
-      const api = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=f2b1f714e0964c57ad5c62db5f6a2455`)
+      const api = await fetch(`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=01413253735042a88adb7b85f4b69403`)
       const data = await api.json();
-      setProductDetails(data);
+      if (data.status === 'failure') {
+        navigate('/FoodApp/redirect');
+      } else {
+        setProductDetails(data);
+      }
       // localStorage.setItem('productDetails', JSON.stringify(data));
     // }
   }

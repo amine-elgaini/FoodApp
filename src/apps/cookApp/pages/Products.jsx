@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import SearchBox from "../components/SearchBox";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function Products() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
   const [cuisine, setCuisine] = useState('');
@@ -22,9 +23,13 @@ function Products() {
     // if (check) {
     //   setProducts(JSON.parse(check));
     // } else {
-      const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=f2b1f714e0964c57ad5c62db5f6a2455&query=${search}&cuisine=${cuisine}`)
+      const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=01413253735042a88adb7b85f4b69403&query=${search}&cuisine=${cuisine}`)
       const data = await api.json();
-      setProducts(data.results);
+      if (data.status === 'failure') {
+        navigate('/FoodApp/redirect');
+      } else {
+        setProducts(data.results);
+      }
       // localStorage.setItem('randomProducts', JSON.stringify(data.results));
     // }
   }
