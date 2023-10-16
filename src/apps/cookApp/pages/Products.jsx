@@ -43,7 +43,7 @@ function Products() {
         {
           products.map((product, i)=>{
               return (
-                <Link key={i} to={`/ProductDetails/${product.id}`}>
+                <Link key={i} to={`/FoodApp/ProductDetails/${product.id}`}>
                   <ProductCard product={product}/>
                 </Link>
               )

@@ -10,9 +10,9 @@ export default function CookApp() {
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/Products" element={<Products/>}></Route>
-        <Route path="/ProductDetails/:id" element={<ProductDetails/>}></Route>
+        <Route path="/FoodApp/" element={<Home/>}></Route>
+        <Route path="/FoodApp/Products" element={<Products/>}></Route>
+        <Route path="/FoodApp/ProductDetails/:id" element={<ProductDetails/>}></Route>
       </Routes>
     </>
   )
