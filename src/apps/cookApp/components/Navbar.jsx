@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   const [currentPage, SetCurrentPage] = useState(()=>{
-    return window.location.href.split('/')[3];
+    return window.location.href.split('/')[4];
   })
   const handleLink = (page) => {
     SetCurrentPage(page);
